@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regex Matcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 40px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 8px;
+        }
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+        }
+        ul {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Regex Matcher</h2>
+
+    <form method="POST">
+        <label>Test String:</label>
+        <textarea name="test_string" rows="4">{{ test_string }}</textarea>
+
+        <label>Regular Expression:</label>
+        <input type="text" name="regex_pattern" value="{{ regex_pattern }}">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="result">
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if matches %}
+            <h3>Matches Found:</h3>
+            <ul>
+                {% for match in matches %}
+                    <li>{{ match }}</li>
+                {% endfor %}
+            </ul>
+        {% elif test_string and not error %}
+            <p>No matches found.</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
